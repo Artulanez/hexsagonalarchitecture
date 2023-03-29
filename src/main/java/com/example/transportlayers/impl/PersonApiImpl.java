@@ -1,17 +1,18 @@
-package com.example.grupoapan.transportlayers.impl;
+package com.example.transportlayers.impl;
 
-import com.example.grupoapan.interactors.PersonUseCase;
-import com.example.grupoapan.transportlayers.mapper.PersonMapper;
-import com.example.grupoapan.transportlayers.openapi.api.PersonApi;
-import com.example.grupoapan.transportlayers.openapi.model.PersonDetail;
-import com.example.grupoapan.transportlayers.openapi.model.PersonInput;
+import com.example.entities.Person;
+import com.example.entities.Address;
+import com.example.interactors.PersonUseCase;
+import com.example.transportlayers.mapper.PersonMapper;
+import com.example.transportlayers.openapi.api.PersonApi;
+import com.example.transportlayers.openapi.model.PersonDetail;
+import com.example.transportlayers.openapi.model.PersonInput;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-
 
 @RestController
 @RequestMapping("/person")
@@ -27,10 +28,13 @@ public class PersonApiImpl implements PersonApi{
     @GetMapping
     public ResponseEntity<List<PersonDetail>> getPerson(){
         var list = personUseCase.getPerson();
-        var resultList = list
-                .stream()
-                .map(item -> PersonMapper.INSTANCE.personDetailByPerson(item))
-                .collect(Collectors.toList());
+        List<PersonDetail> resultList = new ArrayList<PersonDetail>();
+        list.forEach( person -> {
+            PersonDetail personDetail = PersonMapper.INSTANCE.personDetailByPerson(person);
+            loadAddressDetail(person, personDetail);
+            resultList.add(personDetail);
+        });
+
         return ResponseEntity.status(HttpStatus.OK).body(resultList);
     }
 
@@ -39,6 +43,8 @@ public class PersonApiImpl implements PersonApi{
     public ResponseEntity<PersonDetail> getPersonById(@PathVariable("personId")  Long personId){
         var person = personUseCase.getPersonById(personId);
         PersonDetail personDetail = PersonMapper.INSTANCE.personDetailByPerson(person);
+        loadAddressDetail(person, personDetail);
+
         return ResponseEntity.status(HttpStatus.OK).body(personDetail);
     }
 
@@ -46,10 +52,23 @@ public class PersonApiImpl implements PersonApi{
     @PostMapping
     public ResponseEntity<PersonDetail> postPerson( PersonInput personInput){
         var person = PersonMapper.INSTANCE.personByPersonInput(personInput);
+        person.setAddress(new Address());
         person.getAddress().setCep(personInput.getCep());
-        person = personUseCase.postPerson(PersonMapper.INSTANCE.personByPersonInput(personInput));
+        person = personUseCase.postPerson(person);
         PersonDetail personDetail = PersonMapper.INSTANCE.personDetailByPerson(person);
+        loadAddressDetail(person, personDetail);
+
         return ResponseEntity.status(HttpStatus.OK).body(personDetail);
+    }
+
+
+    private static void loadAddressDetail(Person person, PersonDetail personDetail) {
+        personDetail.setCep(person.getAddress().getCep());
+        personDetail.setBairro(person.getAddress().getBairro());
+        personDetail.setLocalidade(person.getAddress().getLocalidade());
+        personDetail.setComplemento(person.getAddress().getComplemento());
+        personDetail.setLogradouro(person.getAddress().getLogradouro());
+        personDetail.setUf(person.getAddress().getUf());
     }
 
     @Override

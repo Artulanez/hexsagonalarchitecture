@@ -1,10 +1,10 @@
-package com.example.grupoapan.datasources.database;
+package com.example.datasources.service;
 
-import com.example.grupoapan.datasources.services.ViaCepService;
-import com.example.grupoapan.entities.Address;
-import com.example.grupoapan.entities.Person;
+import com.example.datasources.services.ViaCepService;
+import com.example.entities.Address;
+import com.example.entities.Person;
 
-import com.example.grupoapan.repositories.PersonRepositoryPort;
+import com.example.repositories.PersonRepositoryPort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

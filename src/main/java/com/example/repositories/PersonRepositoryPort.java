@@ -1,6 +1,6 @@
-package com.example.grupoapan.repositories;
+package com.example.repositories;
 
-import com.example.grupoapan.entities.Person;
+import com.example.entities.Person;
 
 import java.util.List;
 

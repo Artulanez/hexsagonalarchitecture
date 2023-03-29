@@ -1,4 +1,4 @@
-package com.example.grupoapan.configs;
+package com.example.configs;
 
 import io.micrometer.prometheus.PrometheusMeterRegistry;
 import org.springframework.beans.factory.InitializingBean;

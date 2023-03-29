@@ -1,8 +1,8 @@
-package com.example.grupoapan.interactors;
+package com.example.interactors;
 
-import com.example.grupoapan.entities.Person;
+import com.example.entities.Person;
 
-import com.example.grupoapan.repositories.PersonRepositoryPort;
+import com.example.repositories.PersonRepositoryPort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

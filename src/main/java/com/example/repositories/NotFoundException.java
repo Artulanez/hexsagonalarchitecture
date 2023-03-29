@@ -1,4 +1,4 @@
-package com.example.grupoapan.repositories;
+package com.example.repositories;
 
 public class NotFoundException extends RuntimeException {
 

@@ -1,4 +1,4 @@
-package com.example.grupoapan.entities;
+package com.example.entities;
 
 import javax.persistence.Embeddable;
 
