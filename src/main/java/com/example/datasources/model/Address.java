@@ -1,4 +1,4 @@
-package com.example.entities;
+package com.example.datasources.model;
 
 import javax.persistence.Embeddable;
 
@@ -76,4 +76,5 @@ public class Address {
     public void setUf(String uf) {
         this.uf = uf;
     }
+
 }

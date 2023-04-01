@@ -1,15 +1,15 @@
 package com.example.repositories;
 
-import com.example.entities.Person;
+import com.example.entities.PersonEntite;
 
 import java.util.List;
 
 public interface PersonRepositoryPort {
 
-    List<Person> getPerson();
-    Person getPersonById(Long id);
-    Person insert(Person person);
-    void update(Long id, Person person);
+    List<PersonEntite> getPerson();
+    PersonEntite getPersonById(Long id);
+    PersonEntite insert(PersonEntite personEntite);
+    void update(Long id, PersonEntite personEntite);
     void delete(Long id);
 
 

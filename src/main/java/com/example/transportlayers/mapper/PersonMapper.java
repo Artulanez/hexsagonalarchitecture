@@ -1,8 +1,8 @@
 package com.example.transportlayers.mapper;
 
-import com.example.entities.Person;
-import com.example.transportlayers.openapi.model.PersonDetail;
-import com.example.transportlayers.openapi.model.PersonInput;
+import com.example.entities.PersonEntite;
+import com.example.grupoapan.transportlayers.openapi.model.PersonDetail;
+import com.example.grupoapan.transportlayers.openapi.model.PersonInput;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
@@ -11,7 +11,7 @@ public interface PersonMapper {
 
     PersonMapper INSTANCE = Mappers.getMapper(PersonMapper.class);
 
-    PersonDetail personDetailByPerson(Person person);
+    PersonDetail personDetailByPerson(PersonEntite personEntite);
 
-    Person personByPersonInput(PersonInput personInput);
+    PersonEntite personByPersonInput(PersonInput personInput);
 }

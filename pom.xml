@@ -60,11 +60,7 @@
 			<artifactId>jackson-datatype-jsr310</artifactId>
 			<version>2.12.3</version>
 		</dependency>
-		<dependency>
-			<groupId>org.openapitools</groupId>
-			<artifactId>jackson-databind-nullable</artifactId>
-			<version>0.2.1</version>
-		</dependency>
+
 		<dependency>
 			<groupId>io.micrometer</groupId>
 			<artifactId>micrometer-core</artifactId>
@@ -198,8 +194,8 @@
 						<configuration>
 							<inputSpec>${project.basedir}/src/main/resources/openapi.yaml</inputSpec>
 							<generatorName>spring</generatorName>
-							<apiPackage>com.example.grupoapan.transportlayers.openapi.api</apiPackage>
-							<modelPackage>com.example.grupoapan.transportlayers.openapi.model</modelPackage>
+							<apiPackage>com.example.transportlayers.openapi.api</apiPackage>
+							<modelPackage>com.example.transportlayers.openapi.model</modelPackage>
 							<skipValidateSpec>true</skipValidateSpec>
 							<generateAliasAsModel>false</generateAliasAsModel>
 							<enablePostProcessFile>false</enablePostProcessFile>
@@ -248,6 +244,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<version>${project.parent.version}</version>
 				<configuration>
 					<excludes>
 						<exclude>

@@ -1,7 +1,10 @@
-package com.example.entities;
+package com.example.datasources.model;
+
+import com.example.entities.AddressEntite;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+
 
 @Entity
 @Table(name="TB_PERSON")
@@ -14,13 +17,13 @@ public class Person {
     private String name;
 
     @Embedded
-    private Address address;
+    private AddressEntite address;
 
     public Person(){
 
     }
 
-    public Person(Long id, String name, LocalDate dateOfBirth, Address address){
+    public Person(Long id, String name, LocalDate dateOfBirth, AddressEntite address){
         this.id = id;
         this.name = name;
         this.address = address;
@@ -28,6 +31,10 @@ public class Person {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -38,11 +45,11 @@ public class Person {
         this.name = name;
     }
 
-    public Address getAddress() {
+    public AddressEntite getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(AddressEntite address) {
         this.address = address;
     }
 }

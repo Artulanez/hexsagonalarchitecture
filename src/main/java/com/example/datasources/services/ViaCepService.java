@@ -1,6 +1,6 @@
 package com.example.datasources.services;
 
-import com.example.entities.Address;
+import com.example.entities.AddressEntite;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 
@@ -14,12 +14,12 @@ public class ViaCepService {
         this.webClient = webClient;
     }
 
-    public Address getAddressByCep(String cep){
+    public AddressEntite getAddressByCep(String cep){
         String urlFormatada = String.format(url,cep);
-        Address  address = webClient.get()
+        AddressEntite address = webClient.get()
                                     .uri(String.format(url,cep))
                                     .retrieve()
-                                    .bodyToMono(Address.class)
+                                    .bodyToMono(AddressEntite.class)
                                     .block();
         return address;
     }

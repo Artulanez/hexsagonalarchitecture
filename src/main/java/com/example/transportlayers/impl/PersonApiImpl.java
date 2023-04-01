@@ -1,12 +1,12 @@
 package com.example.transportlayers.impl;
 
-import com.example.entities.Person;
-import com.example.entities.Address;
+import com.example.entities.PersonEntite;
+import com.example.entities.AddressEntite;
+import com.example.grupoapan.transportlayers.openapi.api.PersonApi;
+import com.example.grupoapan.transportlayers.openapi.model.PersonDetail;
+import com.example.grupoapan.transportlayers.openapi.model.PersonInput;
 import com.example.interactors.PersonUseCase;
 import com.example.transportlayers.mapper.PersonMapper;
-import com.example.transportlayers.openapi.api.PersonApi;
-import com.example.transportlayers.openapi.model.PersonDetail;
-import com.example.transportlayers.openapi.model.PersonInput;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -52,7 +52,7 @@ public class PersonApiImpl implements PersonApi{
     @PostMapping
     public ResponseEntity<PersonDetail> postPerson( PersonInput personInput){
         var person = PersonMapper.INSTANCE.personByPersonInput(personInput);
-        person.setAddress(new Address());
+        person.setAddress(new AddressEntite());
         person.getAddress().setCep(personInput.getCep());
         person = personUseCase.postPerson(person);
         PersonDetail personDetail = PersonMapper.INSTANCE.personDetailByPerson(person);
@@ -62,13 +62,13 @@ public class PersonApiImpl implements PersonApi{
     }
 
 
-    private static void loadAddressDetail(Person person, PersonDetail personDetail) {
-        personDetail.setCep(person.getAddress().getCep());
-        personDetail.setBairro(person.getAddress().getBairro());
-        personDetail.setLocalidade(person.getAddress().getLocalidade());
-        personDetail.setComplemento(person.getAddress().getComplemento());
-        personDetail.setLogradouro(person.getAddress().getLogradouro());
-        personDetail.setUf(person.getAddress().getUf());
+    private static void loadAddressDetail(PersonEntite personEntite, PersonDetail personDetail) {
+        personDetail.setCep(personEntite.getAddress().getCep());
+        personDetail.setBairro(personEntite.getAddress().getBairro());
+        personDetail.setLocalidade(personEntite.getAddress().getLocalidade());
+        personDetail.setComplemento(personEntite.getAddress().getComplemento());
+        personDetail.setLogradouro(personEntite.getAddress().getLogradouro());
+        personDetail.setUf(personEntite.getAddress().getUf());
     }
 
     @Override
