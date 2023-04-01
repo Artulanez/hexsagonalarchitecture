@@ -1,7 +1,8 @@
 package com.example.configs;
 
-import com.example.grupoapan.transportlayers.openapi.model.ErrorMessage;
+
 import com.example.repositories.NotFoundException;
+import com.example.transportlayers.openapi.model.ErrorMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

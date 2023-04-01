@@ -2,11 +2,11 @@ package com.example.transportlayers.impl;
 
 import com.example.entities.PersonEntite;
 import com.example.entities.AddressEntite;
-import com.example.grupoapan.transportlayers.openapi.api.PersonApi;
-import com.example.grupoapan.transportlayers.openapi.model.PersonDetail;
-import com.example.grupoapan.transportlayers.openapi.model.PersonInput;
 import com.example.interactors.PersonUseCase;
 import com.example.transportlayers.mapper.PersonMapper;
+import com.example.transportlayers.openapi.api.PersonApi;
+import com.example.transportlayers.openapi.model.PersonDetail;
+import com.example.transportlayers.openapi.model.PersonInput;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/person")
-public class PersonApiImpl implements PersonApi{
+public class PersonApiImpl implements PersonApi {
 
     private final PersonUseCase personUseCase;
 
