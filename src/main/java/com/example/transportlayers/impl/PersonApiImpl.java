@@ -63,12 +63,14 @@ public class PersonApiImpl implements PersonApi {
 
 
     private static void loadAddressDetail(PersonEntite personEntite, PersonDetail personDetail) {
-        personDetail.setCep(personEntite.getAddress().getCep());
-        personDetail.setBairro(personEntite.getAddress().getBairro());
-        personDetail.setLocalidade(personEntite.getAddress().getLocalidade());
-        personDetail.setComplemento(personEntite.getAddress().getComplemento());
-        personDetail.setLogradouro(personEntite.getAddress().getLogradouro());
-        personDetail.setUf(personEntite.getAddress().getUf());
+        if (personEntite.getAddress() != null) {
+            personDetail.setCep(personEntite.getAddress().getCep());
+            personDetail.setBairro(personEntite.getAddress().getBairro());
+            personDetail.setLocalidade(personEntite.getAddress().getLocalidade());
+            personDetail.setComplemento(personEntite.getAddress().getComplemento());
+            personDetail.setLogradouro(personEntite.getAddress().getLogradouro());
+            personDetail.setUf(personEntite.getAddress().getUf());
+        }
     }
 
     @Override

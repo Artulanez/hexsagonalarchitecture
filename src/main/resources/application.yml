@@ -37,8 +37,6 @@ info:
 server:
   port: 8081
   max-http-header-size: 60000
-  #servlet:
-  #  context-path: /grupopan
 
 management:
   server:
